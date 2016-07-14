@@ -56,9 +56,10 @@ function bootstrapAngular() {
 
     wp_localize_script(
         'app',
-        'localized',
+        'settings',
         array(
-            'partials' => trailingslashit( get_template_directory_uri() ) . 'partials/'
+            'partialsPath' => trailingslashit( get_template_directory_uri() ) . 'partials/',
+            'defaultPageId' => get_option('page_on_front')
         )
     );
 }

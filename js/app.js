@@ -1,18 +1,20 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ngSanitize']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
+    var defaultPageId = parseInt(settings.defaultPageId);
+    var defaultPagePath = 'page/' + defaultPageId;
+
     $routeProvider
-        .when('/', {
-            templateUrl: localized.partials + 'page.html',
+        .when('/page/:id', {
+            templateUrl: settings.partialsPath + 'page.html',
             controller: 'PageCtrl'
         })
-        .when('/page/:id', {
-            templateUrl: localized.partials + 'page.html',
-            controller: 'PageCtrl'
+        .when('/error', {
+            templateUrl: settings.partialsPath + 'error.html'
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: defaultPageId > 0 ? defaultPagePath : 'error'
         });
 });
