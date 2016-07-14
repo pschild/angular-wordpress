@@ -19,10 +19,15 @@ function bootstrapAngular() {
         get_stylesheet_directory_uri() . '/node_modules/angular-route/angular-route.min.js'
     );
 
+    wp_register_script(
+        'angularjs-sanitize',
+        get_stylesheet_directory_uri() . '/node_modules/angular-sanitize/angular-sanitize.min.js'
+    );
+
     wp_enqueue_script(
         'app',
         get_stylesheet_directory_uri() . '/js/app.js',
-        array('angularjs', 'angularjs-route')
+        array('angularjs', 'angularjs-route', 'angularjs-sanitize')
     );
 
     wp_enqueue_script(
